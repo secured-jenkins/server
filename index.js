@@ -5,9 +5,12 @@ const app = express();
 const port = process.env.PORT || 8085;
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(cors({
+  origin: '*',
+}));
 
 app.get("/", (req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // res.setHeader('Access-Control-Allow-Origin', '*');
   res.json({
     availablePaths: [
       {
@@ -37,13 +40,13 @@ app.post("/tc-proxy", async (req, res) => {
   const responseData = await response.text();
 
   // Set the Access-Control-Allow-Origin header to allow all origins
-  res.setHeader("Access-Control-Allow-Origin", "*");
+  // res.setHeader("Access-Control-Allow-Origin", "*");
 
   res.status(response.status).send(responseData);
 });
 
 app.use((req, res) => {
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(404).send("This path does not exist.");
 });
 
