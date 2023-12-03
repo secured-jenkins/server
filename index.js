@@ -42,6 +42,7 @@ app.post("/tc-proxy", async (req, res) => {
 });
 
 app.use((req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.status(404).send("This path does not exist.");
 });
 
