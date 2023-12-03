@@ -7,6 +7,7 @@ const port = process.env.PORT || 8085;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
   res.json({
     availablePaths: [
       {
